@@ -1,0 +1,36 @@
+# govML project configuration
+# Profile: supervised classification
+# See: https://github.com/rexcoleman/ml-governance-templates
+
+project:
+  name: govml-example-iris
+  version: "1.0.0"
+  description: "Iris classification demonstrating govML contract-driven development"
+  profile: supervised
+
+governance:
+  experiment_contract: docs/EXPERIMENT_CONTRACT.md
+  hypothesis_registry: docs/HYPOTHESIS_REGISTRY.md
+  data_contract: docs/DATA_CONTRACT.md
+
+pipeline:
+  algorithms:
+    - LogisticRegression
+    - RandomForest
+    - SVM_RBF
+  seeds: [42, 123, 456, 789, 1024]
+  cv_folds: 5
+  cv_strategy: stratified
+  metric: accuracy
+  test_size: 0.2
+
+reproducibility:
+  multi_seed: true
+  seed_count: 5
+  leakage_tests: true
+  sanity_baselines: true
+  learning_curves: true
+
+outputs:
+  results_dir: outputs/
+  figures_dir: outputs/figures/
